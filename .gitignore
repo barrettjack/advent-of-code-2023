@@ -1,0 +1,22 @@
+# Ignore Visual Studio Code specific files
+.vscode/
+
+# Ignore CLion specific files
+.cmake/
+.idea/
+
+# Ignore compiled object files
+*.o
+*.obj
+
+# Ignore executables, assuming program files are named according to the convention dayXX-partXX-aoc-solution.cpp, and executables dayXX-partXX-aoc-solution
+*aoc-solution
+
+# Ignore build directories
+/build/
+/bin/
+
+# Ignore generated files by CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
