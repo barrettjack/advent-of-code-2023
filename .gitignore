@@ -11,6 +11,7 @@
 
 # Ignore executables, assuming program files are named according to the convention dayXX-partXX-aoc-solution.cpp, and executables dayXX-partXX-aoc-solution
 *aoc-solution
+*solution
 
 # Ignore build directories
 /build/

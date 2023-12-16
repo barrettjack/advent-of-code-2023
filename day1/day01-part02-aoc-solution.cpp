@@ -18,6 +18,29 @@ const std::unordered_map<std::string, char> string_to_char = {
         {"nine", '9'}
 };
 
+
+inline void check_substrings(std::deque<char>& numbers_on_line, std::string& line, int i) {
+    for (int j {static_cast<int>(line.length())}; j > i; j--) {
+        std::string substring {line.substr(i, j - i)};
+        if (string_to_char.count(substring) > 0) {
+            numbers_on_line.push_back(string_to_char.at(substring));
+            break;
+        }
+    }
+}
+
+
+inline void store_numbers_on_line_in_deque(std::deque<char>& numbers_on_line, std::string& line) {
+    for (int i {0}; i < line.length(); i++){
+        if (std::isdigit(line.at(i))) {
+            numbers_on_line.push_back(line.at(i));
+        } else {
+            check_substrings(numbers_on_line, line, i);
+        }
+    }
+}
+
+
 int main() {
     std::ifstream file("day01-part01-aoc-input.txt");
     std::string line;
@@ -27,21 +50,12 @@ int main() {
 
     if (file.is_open()) {
         while (getline(file, line)) {
-            for (int i {0}; i < line.length(); i++){
-                if (std::isdigit(line.at(i))) {
-                    numbers_on_line.push_back(line.at(i));
-                } else {
-                    for (int j {static_cast<int>(line.length())}; j > i; j--) {
-                        std::string substring {line.substr(i, j - i)};
-                        if (string_to_char.count(substring) > 0) {
-                            numbers_on_line.push_back(string_to_char.at(substring));
-                            break;
-                        }
-                    }
-                }
-            }
-            if (numbers_on_line.size() == 0)
+
+            store_numbers_on_line_in_deque(numbers_on_line, line);
+
+            if (numbers_on_line.size() == 0) {
                 continue;
+            }
 
             number_to_add_as_string.append(1, numbers_on_line.front());
             number_to_add_as_string.append(1, numbers_on_line.back());
