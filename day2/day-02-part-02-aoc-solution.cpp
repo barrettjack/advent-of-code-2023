@@ -64,12 +64,12 @@ std::vector<std::string> process_hand(std::string& hand) {
 
 
 int& determine_colour(std::string& colour, CubeCount& cubes_in_hand) {
-    std::unordered_map<std::string, int*> field_map = {
-            {"red", &cubes_in_hand.red},
-            {"green", &cubes_in_hand.green},
-            {"blue", &cubes_in_hand.blue}
+    std::unordered_map<std::string, int&> field_map = {
+            {"red", cubes_in_hand.red},
+            {"green", cubes_in_hand.green},
+            {"blue", cubes_in_hand.blue}
     };
-    return *(field_map.at(colour));
+    return field_map.at(colour);
 }
 
 
